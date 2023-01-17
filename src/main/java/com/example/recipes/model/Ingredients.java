@@ -7,10 +7,10 @@ public class Ingredients {
     private final int id;
     public static int count = 1;
 
-    public Ingredients(String name, int quantityOfIngredients, String measureUnit) {
-        this.name = name;
-        this.quantityOfIngredients = quantityOfIngredients;
-        this.measureUnit = measureUnit;
+    public Ingredients() {
+        this.name = "";
+        this.quantityOfIngredients = 0;
+        this.measureUnit = "";
         this.id = count++;
     }
 
