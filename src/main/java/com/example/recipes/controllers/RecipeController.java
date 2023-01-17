@@ -12,7 +12,7 @@ public class RecipeController {
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
-@PostMapping("/recipe/add")
+@PostMapping
     public Recipes addRecipe(@RequestBody Recipes recipes) {
     return recipeService.addRecipe(recipes);
     }
