@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IngredientsController{
     private IngredientsService ingredientsService;
 
-    public IngredientsController(IngredientsService ingredientsService) { //почему горит красным? НЕ понимаю
+    public IngredientsController(IngredientsService ingredientsService) {
         this.ingredientsService = ingredientsService;
     }
 @GetMapping

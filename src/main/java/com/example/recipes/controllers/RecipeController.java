@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class RecipeController {
     private final RecipeService recipeService;
 
-    public RecipeController(RecipeService recipeService) { //почему горит красным? НЕ понимаю
+    public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 @PostMapping("/recipe/add")
