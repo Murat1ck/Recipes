@@ -13,7 +13,7 @@ public class IngredientsController{
         this.ingredientsService = ingredientsService;
     }
     @PostMapping
-    public Ingredients addIngredients(Ingredients ingredients) {
+    public Ingredients addIngredients(@RequestBody Ingredients ingredients) {
     return ingredientsService.addIngredients(ingredients);
     }
 
