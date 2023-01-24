@@ -1,5 +1,8 @@
 package com.example.recipes.model;
 
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
 public class Ingredients {
     private final String name;
     private int quantityOfIngredients;
