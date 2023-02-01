@@ -20,27 +20,5 @@ public class Ingredients {
     private String measureUnit;
     private int id;
     public static int count = 1;
-//        public Ingredients() {
-//        this.name = "";
-//        this.quantityOfIngredients = 0;
-//        this.measureUnit = "";
-//        this.id = count++;
-//    }
-
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public int getQuantityOfIngredients() {
-//        return quantityOfIngredients;
-//    }
-//
-//    public void setQuantityOfIngredients(int quantityOfIngredients) {
-//        this.quantityOfIngredients = quantityOfIngredients;
-//    }
-//
-//    public String getMeasureUnit() {
-//        return measureUnit;
-//    }
 
 }

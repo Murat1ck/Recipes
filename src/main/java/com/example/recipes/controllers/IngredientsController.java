@@ -40,9 +40,6 @@ public class IngredientsController{
             )
     })
     public ResponseEntity<Ingredients> addIngredients(@Valid @RequestBody Ingredients ingredients) {
-//        if(StringUtils.isBlank(ingredients.getName())){
-//            return ResponseEntity.badRequest().body("Не корректное имя");
-//        }
     return ResponseEntity.ok( ingredientsService.addIngredients(ingredients));
     }
 
