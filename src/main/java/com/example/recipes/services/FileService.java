@@ -1,6 +1,8 @@
 package com.example.recipes.services;
 
-public interface FilesService {
+import java.io.File;
+
+public interface FileService {
 
     boolean saveToFileRecipes(String json);
 
@@ -13,4 +15,10 @@ public interface FilesService {
     boolean cleanDataFileIngredients();
 
     String readFromFileIngredients();
+
+    File getIngredientDataFile();
+
+    File getRecipeDataFile();
+
+
 }

@@ -1,7 +1,7 @@
 package com.example.recipes.services.impl;
 
 import com.example.recipes.model.Ingredients;
-import com.example.recipes.services.FilesService;
+import com.example.recipes.services.FileService;
 import com.example.recipes.services.IngredientsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -10,17 +10,15 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 @Service
 public class IngredientsServiceImpl implements IngredientsService {
     private TreeMap<Integer, Ingredients> ingredientsMap = new TreeMap<>();
     private static int id = 1;
-    final private FilesService filesService;
+    final private FileService filesService;
 
-    public IngredientsServiceImpl(FilesService filesService) {
+    public IngredientsServiceImpl(FileService filesService) {
         this.filesService = filesService;
     }
     @PostConstruct
@@ -70,7 +68,7 @@ public class IngredientsServiceImpl implements IngredientsService {
 
         try {
             String json = filesService.readFromFileIngredients();
-            ingredientsMap = new ObjectMapper().readValue(json, new TypeReference<TreeMap<Integer, Ingredients>>() {
+            ingredientsMap = new ObjectMapper().readValue(json, new TypeReference<>() {
             });
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
