@@ -1,9 +1,12 @@
 package com.example.recipes.model;
 
+import lombok.EqualsAndHashCode;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+@EqualsAndHashCode
 
 public class Recipes {
     private final String name;
