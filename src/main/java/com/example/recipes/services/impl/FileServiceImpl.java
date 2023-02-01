@@ -75,7 +75,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public String readFromFileRecipes() {
         try {
-            return Files.readString(Path.of(dataFilePath, dataFileNameIngredients));
+            return Files.readString(Path.of(dataFilePath, dataFileNameRecipes));
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
