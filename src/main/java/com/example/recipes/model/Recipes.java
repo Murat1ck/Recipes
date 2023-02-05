@@ -26,35 +26,4 @@ public class Recipes {
     private Set<Ingredients> ingredients = new HashSet<>();
     private List<String> cookingSteps = new ArrayList<>();
 
-//    public Recipes(String name, int cookingTime, Set<Ingredients> ingredients, List<String> cookingSteps) {
-//        this.name = name;
-//        this.cookingTime = cookingTime;
-//        this.id = count++;
-//        this.ingredients = ingredients;
-//        this.cookingSteps = cookingSteps;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public int getCookingTime() {
-//        return cookingTime;
-//    }
-//
-//    public Set<Ingredients> getIngredients() {
-//        return ingredients;
-//    }
-//
-//    public void setIngredients(Set<Ingredients> ingredients) {
-//        this.ingredients = ingredients;
-//    }
-//
-//    public List<String> getCookingSteps() {
-//        return cookingSteps;
-//    }
-//
-//    public void setCookingSteps(List<String> cookingSteps) {
-//        this.cookingSteps = cookingSteps;
-//    }
 }
