@@ -1,5 +1,6 @@
 package com.example.recipes.services;
 
+import javax.annotation.processing.FilerException;
 import java.io.File;
 
 public interface FileService {
@@ -8,7 +9,7 @@ public interface FileService {
 
     boolean cleanDataFileRecipes();
 
-    String readFromFileRecipes();
+    String readFromFileRecipes() throws FilerException;
 
     boolean saveToFileIngredients(String json);
 

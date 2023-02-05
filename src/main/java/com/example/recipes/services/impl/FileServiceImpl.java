@@ -1,9 +1,11 @@
 package com.example.recipes.services.impl;
 
+import com.example.recipes.exception.FileException;
 import com.example.recipes.services.FileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.processing.FilerException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -73,12 +75,12 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String readFromFileRecipes() {
+    public String readFromFileRecipes() throws FilerException {
         try {
-            return Files.readString(Path.of(dataFilePath, dataFileNameRecipes));
+            return Files.readString(Path.of(dataFilePath, dataFileNameRecipes ));
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new FileException("Ошибка чтения файла");
         }
 
     }
@@ -88,7 +90,7 @@ public class FileServiceImpl implements FileService {
             return Files.readString(Path.of(dataFilePath, dataFileNameIngredients));
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new FileException("Ошибка чтения файла");
         }
     }
 
