@@ -10,11 +10,20 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.validation.Valid;
-import java.util.Collection;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+
 
 @RestController
 @RequestMapping("/recipe")
@@ -60,8 +69,24 @@ public class RecipeController {
 
     @GetMapping
     @Operation(summary = "Получение всех рецептов")
-    public ResponseEntity<Collection<Recipes>> getAllRecipes() {
-        return ResponseEntity.ok(recipeService.getAll());
+    public ResponseEntity<Object> getRecipeMap() {
+        try {
+            Path path = recipeService.getRecipeMap();
+            if (Files.size(path) == 0) {
+                return ResponseEntity.noContent().build();
+            }
+            InputStreamResource resource = new InputStreamResource(new FileInputStream(path.toString()));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .contentLength(Files.size( path))
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Recipes.txt\"")
+                    .body(resource);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(e.toString());
+        }
+
     }
 @PutMapping("/{id}")
 @Operation(summary = "Изенение рецептов по id")

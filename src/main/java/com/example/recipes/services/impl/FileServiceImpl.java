@@ -5,7 +5,6 @@ import com.example.recipes.services.FileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.processing.FilerException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,59 +22,51 @@ public class FileServiceImpl implements FileService {
 
 
     @Override
-    public boolean saveToFileRecipes(String json) {
+    public void saveToFileRecipes(String json) {
         try {
             cleanDataFileRecipes();
             Files.writeString(Path.of(dataFilePath, dataFileNameRecipes), json);
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
 
     }
     @Override
-    public boolean saveToFileIngredients(String json) {
+    public void saveToFileIngredients(String json) {
         try {
             cleanDataFileIngredients();
             Files.writeString(Path.of(dataFilePath, dataFileNameIngredients), json);
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
 
     }
 
     @Override
-    public boolean cleanDataFileRecipes() {
+    public void cleanDataFileRecipes() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameRecipes);
             Files.deleteIfExists(path);
             Files.createFile(path);
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
 
     }
     @Override
-    public boolean cleanDataFileIngredients() {
+    public void cleanDataFileIngredients() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameIngredients);
             Files.deleteIfExists(path);
             Files.createFile(path);
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
 
     }
 
     @Override
-    public String readFromFileRecipes() throws FilerException {
+    public String readFromFileRecipes() throws FileException {
         try {
             return Files.readString(Path.of(dataFilePath, dataFileNameRecipes ));
         } catch (IOException e) {
@@ -102,6 +93,14 @@ public class FileServiceImpl implements FileService {
     @Override
     public File getRecipeDataFile() {
         return new File(dataFilePath + "/" + dataFileNameRecipes);
+    }
+    @Override
+    public Path createTempFile(String suffix) {
+        try {
+            return Files.createTempFile(Path.of(dataFilePath), "tempFile", suffix);
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 
 }

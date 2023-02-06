@@ -9,8 +9,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.processing.FilerException;
+
+import java.io.IOException;
+
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.TreeMap;
+
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -23,8 +32,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
     @PostConstruct
     private void init() {
-        readFromFileRecipe();
-    }
+        try {
+            readFromFileRecipe();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    }
     public void saveToFileRecipe() {
         try {
             String json = new ObjectMapper().writeValueAsString(recipesMap);
@@ -39,7 +51,7 @@ public class RecipeServiceImpl implements RecipeService {
             String json = filesService.readFromFileRecipes();
             recipesMap = new ObjectMapper().readValue(json, new TypeReference<>() {
             });
-        } catch (JsonProcessingException e) {
+        } catch (JsonProcessingException | FilerException e) {
             throw new RuntimeException(e);
         }
     }
@@ -74,5 +86,21 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes;
     }
 
+    @Override
+    public Path getRecipeMap() throws IOException {
+        Path path = filesService.createTempFile("Recipes");
+        for (Recipes recipe : recipesMap.values()) {
+            try (Writer writer = Files.newBufferedWriter( path, StandardOpenOption.APPEND)) {
+                writer.append(recipe.getName()).append(". ");
+                writer.append("\n");
+                writer.append("Время приготовления: ").append(String.valueOf(recipe.getCookingTime())).append(" минут. ");
+                writer.append("\n");
+                writer.append("Ингридиенты:" + "\n").append(String.valueOf(recipe.getIngredients()));
+                writer.append("\n");
+                writer.append("Шаги приготовления:" + "\n").append(String.valueOf(recipe.getCookingSteps()));
+            }
+        }
+        return path;
+    }
 
 }

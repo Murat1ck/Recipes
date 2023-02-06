@@ -2,18 +2,19 @@ package com.example.recipes.services;
 
 import javax.annotation.processing.FilerException;
 import java.io.File;
+import java.nio.file.Path;
 
 public interface FileService {
 
-    boolean saveToFileRecipes(String json);
+    void saveToFileRecipes(String json);
 
-    boolean cleanDataFileRecipes();
+    void cleanDataFileRecipes();
 
     String readFromFileRecipes() throws FilerException;
 
-    boolean saveToFileIngredients(String json);
+    void saveToFileIngredients(String json);
 
-    boolean cleanDataFileIngredients();
+    void cleanDataFileIngredients();
 
     String readFromFileIngredients();
 
@@ -22,4 +23,5 @@ public interface FileService {
     File getRecipeDataFile();
 
 
+    Path createTempFile(String suffix);
 }

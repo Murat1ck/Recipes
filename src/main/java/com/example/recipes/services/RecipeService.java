@@ -1,8 +1,9 @@
 package com.example.recipes.services;
 
-import com.example.recipes.model.Ingredients;
 import com.example.recipes.model.Recipes;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Collection;
 
 public interface RecipeService {
@@ -14,4 +15,6 @@ public interface RecipeService {
     Recipes removeRecipes(int id);
 
     Recipes updateRecipes(int id, Recipes recipes);
+
+    Path getRecipeMap() throws IOException;
 }

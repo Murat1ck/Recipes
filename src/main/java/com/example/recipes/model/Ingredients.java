@@ -1,9 +1,6 @@
 package com.example.recipes.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -12,6 +9,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 public class Ingredients {
     @NotBlank(message = "Введите имя")
     private String name;
