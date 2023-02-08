@@ -1,0 +1,26 @@
+{
+  "1": {
+    "name": "Творог",
+    "quantityOfIngredients": 175,
+    "measureUnit": "г.",
+    "id": 1
+  },
+  "2": {
+  "name": "Яйцо куринное",
+  "quantityOfIngredients": 1,
+  "measureUnit": "шт.",
+  "id": 2
+},
+"3":{
+"name": "Пшеничная мука",
+"quantityOfIngredients": 3,
+"measureUnit": "ст/л.",
+  "id": 3
+},
+"4":{
+"name": "Сахар",
+"quantityOfIngredients": 1,
+"measureUnit": "ст.л.",
+  "id": 4
+}
+}

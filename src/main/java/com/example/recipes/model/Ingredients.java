@@ -1,17 +1,17 @@
 package com.example.recipes.model;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
+import java.util.HashSet;
+import java.util.Set;
 
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 public class Ingredients {
     @NotBlank(message = "Введите имя")
     private String name;
@@ -20,27 +20,9 @@ public class Ingredients {
     private String measureUnit;
     private int id;
     public static int count = 1;
-//        public Ingredients() {
-//        this.name = "";
-//        this.quantityOfIngredients = 0;
-//        this.measureUnit = "";
-//        this.id = count++;
-//    }
+    private Set<Ingredients> ingredients = new HashSet<>();
 
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public int getQuantityOfIngredients() {
-//        return quantityOfIngredients;
-//    }
-//
-//    public void setQuantityOfIngredients(int quantityOfIngredients) {
-//        this.quantityOfIngredients = quantityOfIngredients;
-//    }
-//
-//    public String getMeasureUnit() {
-//        return measureUnit;
-//    }
-
+    public Ingredients(int id) {
+        this.id = count++;
+    }
 }
