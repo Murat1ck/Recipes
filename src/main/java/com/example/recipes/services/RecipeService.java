@@ -12,7 +12,7 @@ public interface RecipeService {
     Recipes getRecipe(Integer id);
     Collection<Recipes> getAll();
 
-    Recipes removeRecipes(int id);
+    boolean removeRecipes(int id);
 
     Recipes updateRecipes(int id, Recipes recipes);
 

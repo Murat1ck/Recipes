@@ -6,15 +6,15 @@ import java.nio.file.Path;
 
 public interface FileService {
 
-    void saveToFileRecipes(String json);
+    boolean saveToFileRecipes(String json);
 
-    void cleanDataFileRecipes();
+    boolean cleanDataFileRecipes();
 
     String readFromFileRecipes() throws FilerException;
 
-    void saveToFileIngredients(String json);
+    boolean saveToFileIngredients(String json);
 
-    void cleanDataFileIngredients();
+    boolean cleanDataFileIngredients();
 
     String readFromFileIngredients();
 

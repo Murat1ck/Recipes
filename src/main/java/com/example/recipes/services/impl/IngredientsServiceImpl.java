@@ -34,7 +34,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     @Override
     public Ingredients addIngredients(Ingredients ingredients) {
         ingredientsMap.put(id++, ingredients);
-        readFromFile();
+        saveToFile();
         return ingredients;
 
     }
@@ -49,14 +49,20 @@ public class IngredientsServiceImpl implements IngredientsService {
         return ingredientsMap.values();
     }
 
+
+
+
     public Ingredients removeIngredients(int id) {
         return ingredientsMap.remove(id);
     }
 
     public Ingredients updateIngredients(int id, Ingredients ingredients) {
-        ingredientsMap.put(id, ingredients);
-        saveToFile();
-        return ingredients;
+        if (ingredientsMap.containsKey(id)) {
+            ingredientsMap.put(id, ingredients);
+            saveToFile();
+            return ingredients;
+        }
+        return null;
     }
     public void saveToFile() {
         try {
@@ -80,4 +86,6 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
 
+
 }
+

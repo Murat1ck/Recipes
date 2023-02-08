@@ -9,7 +9,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.*;
 
 @RestController
@@ -50,12 +49,12 @@ public class FilesController {
                 }
         }
         @PostMapping(value = "/import/ingredient", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-        public ResponseEntity<Void> uploadIngredientDataFail(@RequestParam MultipartFile file) {
+        public ResponseEntity<Void> uploadIngredientDataFail(@RequestParam MultipartFile ingredientDataFile) {
                 filesService.cleanDataFileIngredients();
-                File ingredientDataFile = filesService.getIngredientDataFile();
+                File ingredientDataFile1 = filesService.getIngredientDataFile();
 
-                try (FileOutputStream fos = new FileOutputStream(ingredientDataFile)) {
-                        IOUtils.copy(file.getInputStream(), fos);
+                try (FileOutputStream fos = new FileOutputStream(ingredientDataFile1)) {
+                        IOUtils.copy(ingredientDataFile.getInputStream(), fos);
                         return ResponseEntity.ok().build();
                 } catch (IOException e) {
                         e.printStackTrace();
@@ -65,12 +64,12 @@ public class FilesController {
 
         }
         @PostMapping(value = "/import/recipe", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-        public ResponseEntity<Void> uploadRecipeDataFail(@RequestParam MultipartFile file1) {
+        public ResponseEntity<Void> uploadRecipeDataFail(@RequestParam MultipartFile recipeDataFile) {
                 filesService.cleanDataFileRecipes();
-                File recipeDataFile = filesService.getRecipeDataFile();
+                File recipeDataFile1 = filesService.getRecipeDataFile();
 
-                try (FileOutputStream fos = new FileOutputStream(recipeDataFile)) {
-                        IOUtils.copy(file1.getInputStream(), fos);
+                try (FileOutputStream fos1 = new FileOutputStream(recipeDataFile1)) {
+                        IOUtils.copy(recipeDataFile.getInputStream(), fos1);
                         return ResponseEntity.ok().build();
                 } catch (IOException e) {
                         e.printStackTrace();

@@ -24,7 +24,7 @@ import java.util.TreeMap;
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private TreeMap<Integer, Recipes> recipesMap = new TreeMap<>();
-    private static Integer id = 1;
+    private Integer id = 1;
     final private FileService filesService;
 
     public RecipeServiceImpl(FileService filesService) {
@@ -75,15 +75,22 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipes removeRecipes(int id) {
-        return recipesMap.remove(id);
+    public boolean removeRecipes(int id) {
+        if (recipesMap.containsKey(id)) {
+            recipesMap.remove(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Recipes updateRecipes(int id, Recipes recipes) {
-        recipesMap.put(id, recipes);
-        saveToFileRecipe();
-        return recipes;
+    public Recipes updateRecipes(int id, Recipes newRecipes) {
+        if (recipesMap.containsKey(id)) {
+            recipesMap.put(id, newRecipes);
+            saveToFileRecipe();
+            return newRecipes;
+        }
+        return null;
     }
 
     @Override

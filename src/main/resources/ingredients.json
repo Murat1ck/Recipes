@@ -9,18 +9,18 @@
   "name": "Яйцо куринное",
   "quantityOfIngredients": 1,
   "measureUnit": "шт.",
-  "id": 1
+  "id": 2
 },
 "3":{
 "name": "Пшеничная мука",
 "quantityOfIngredients": 3,
 "measureUnit": "ст/л.",
-  "id": 1
+  "id": 3
 },
 "4":{
 "name": "Сахар",
 "quantityOfIngredients": 1,
 "measureUnit": "ст.л.",
-  "id": 1
+  "id": 4
 }
 }

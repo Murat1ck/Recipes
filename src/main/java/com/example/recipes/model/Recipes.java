@@ -24,4 +24,7 @@ public class Recipes {
     private Set<Ingredients> ingredients = new HashSet<>();
     private List<String> cookingSteps = new ArrayList<>();
 
+    public Recipes(int id) {
+        this.id = count++;
+    }
 }

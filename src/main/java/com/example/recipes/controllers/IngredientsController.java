@@ -57,14 +57,18 @@ public class IngredientsController {
             }
             )})
     @Parameters(value = {@Parameter(name = "id", example = "1")})
-    ResponseEntity<Ingredients> getByIdIngr(@PathVariable int id) {
-        return ResponseEntity.ok(ingredientsService.getByIdIngr(id));
+    public ResponseEntity<Ingredients> getByIdIngr(@PathVariable int id) {
+        Ingredients ingredients = ingredientsService.getByIdIngr(id);
+        if (ingredients == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ingredients);
     }
 
     @GetMapping
     @Operation(summary = "Получение всех ингредиентов")
-    public Collection<Ingredients> getAll() {
-        return this.ingredientsService.getAll();
+    public ResponseEntity<Ingredients> getAll() {
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")

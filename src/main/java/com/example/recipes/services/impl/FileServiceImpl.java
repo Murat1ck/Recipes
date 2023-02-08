@@ -22,45 +22,53 @@ public class FileServiceImpl implements FileService {
 
 
     @Override
-    public void saveToFileRecipes(String json) {
+    public boolean saveToFileRecipes(String json) {
         try {
             cleanDataFileRecipes();
             Files.writeString(Path.of(dataFilePath, dataFileNameRecipes), json);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
     @Override
-    public void saveToFileIngredients(String json) {
+    public boolean saveToFileIngredients(String json) {
         try {
             cleanDataFileIngredients();
             Files.writeString(Path.of(dataFilePath, dataFileNameIngredients), json);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
 
     @Override
-    public void cleanDataFileRecipes() {
+    public boolean cleanDataFileRecipes() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameRecipes);
             Files.deleteIfExists(path);
             Files.createFile(path);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
     @Override
-    public void cleanDataFileIngredients() {
+    public boolean cleanDataFileIngredients() {
         try {
             Path path = Path.of(dataFilePath, dataFileNameIngredients);
             Files.deleteIfExists(path);
             Files.createFile(path);
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
     }
@@ -78,7 +86,8 @@ public class FileServiceImpl implements FileService {
     @Override
     public String readFromFileIngredients() {
         try {
-            return Files.readString(Path.of(dataFilePath, dataFileNameIngredients));
+            Path path = Path.of(dataFilePath, dataFileNameIngredients);
+            return Files.readString(path);
         } catch (IOException e) {
             e.printStackTrace();
             throw new FileException("Ошибка чтения файла");

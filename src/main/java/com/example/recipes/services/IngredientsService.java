@@ -9,7 +9,7 @@ public interface IngredientsService {
 
     Ingredients getByIdIngr(int id);
 
-    Collection <Ingredients> getAll();
+    Collection<Ingredients> getAll();
 
     Ingredients removeIngredients(int id);
 
